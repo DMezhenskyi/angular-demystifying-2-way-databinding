@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CounterFuckounterComponent } from './counter-fuckounter.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CounterFuckounterComponent],
   template: `
     <img width="150"src="https://www.decodedfrontend.io/wp-content/uploads/2021/01/icon.png" alt="Decoded Frontend">
     <h1>Demystifying <br> 2-Way-Databinding</h1>
-    <input [(ngModel)]="inputValue" type="text">
-    <div class="input-value">Input value: <b>{{inputValue}}</b></div>
+    <app-counter-fuckounter [(startFrom)]="counterValue"></app-counter-fuckounter> 
+    <div class="input-value">Couter value: <b>{{counterValue}}</b></div>
   `,
   styles: [`
     input {
@@ -32,5 +33,10 @@ import { FormsModule } from '@angular/forms';
   `]
 })
 export class AppComponent {
-  inputValue = '';
+  counterValue = 5;
+  constructor() {
+    setTimeout(() => {
+      this.counterValue = 0; 
+    }, 4000);
+  }
 }

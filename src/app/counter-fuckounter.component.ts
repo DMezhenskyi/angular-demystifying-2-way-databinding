@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-counter-fuckounter',
@@ -23,9 +23,13 @@ export class CounterFuckounterComponent implements OnInit {
   @Input()
   startFrom = 0;
 
+  @Output()
+  startFromChange = new EventEmitter();
+
   ngOnInit() {
     setInterval(() => {
       this.startFrom = this.startFrom + 1;
+      this.startFromChange.emit(this.startFrom);
     }, 1000)
   }
 }
